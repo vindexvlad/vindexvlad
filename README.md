@@ -2,7 +2,6 @@
 - 👀 I’m interested in Python and Java
 - 🌱 I’m currently learning Python_3
 - 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ... @vindexvlad on Telegram
 
 <!---
 vindexvlad/vindexvlad is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
