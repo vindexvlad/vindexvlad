@@ -22,8 +22,7 @@ float ratio = 0;
 float concentration = 0;
 
 #include <iarduino_GPS_NMEA.h>                    //  Подключаем библиотеку для расшифровки строк протокола NMEA получаемых по UART.
-                                                  //
-      //  Объявляем объект SerialGPS для работы с функциями и методами библиотеки SoftwareSerial, указав выводы RX и TX Arduino.
+                                                  
 iarduino_GPS_NMEA gps;
 
 
@@ -44,10 +43,10 @@ const int PIN_CHIP_SELECT = 53;
    gps.begin(Serial1);
 
    Serial.print("Initializing SD card...");
-   pinMode(5, OUTPUT);                                  // Этот пин обязательно должен быть определен как OUTPUT
+   pinMode(5, OUTPUT);                                  
  if (!SD.begin(PIN_CHIP_SELECT)) {
     Serial.println("Card failed, or not present");
-    return;                                             // Если что-то пошло не так, завершаем работу:
+    return;                                             
   }
   Serial.println("card initialized.");
  
@@ -66,7 +65,7 @@ const int PIN_CHIP_SELECT = 53;
 
  void loop() {
   String logStringData = "";
-  gps.read();                                  //  Читаем данные (чтение может занимать больше 1 секунды). Функции можно указать массив для получения данных о спутниках.
+  gps.read();                                     
      if(!gps.errPos){                             //
          Serial.print("http://maps.yandex.ru/");  //  Ссылка на yandex карты:
                                                   //
@@ -104,8 +103,8 @@ const int PIN_CHIP_SELECT = 53;
         logStringData+="\r\n";
         logStringData+="    ";
 
-     }else{                                       //
-         Serial.println("Нет данных.");           //
+     }else{                                       
+         Serial.println("Нет данных.");           
          logStringData+="Нет данных.";
          logStringData+="    ";
      }
@@ -120,7 +119,7 @@ const int PIN_CHIP_SELECT = 53;
 
   Serial.println();
 
-  Serial.print("Temperature: ");                         // Печать текста
+  Serial.print("Temperature: ");                          // Печать текста
    Serial.print(temp);                                    // Печать температуры
    Serial.println("*C");                                  // Печать текста
    Serial.println();
@@ -129,7 +128,7 @@ const int PIN_CHIP_SELECT = 53;
    logStringData+=String(temp);
    logStringData+="*C,   ";
 
-   Serial.print("Pressure: ");                            // Печать текста       
+   Serial.print("Pressure: ");                           // Печать текста       
    Serial.print(pres);                                   // Печать атмосферное давление
    Serial.println("hPa");                                // Печать текста
    Serial.println();
@@ -138,7 +137,7 @@ const int PIN_CHIP_SELECT = 53;
    logStringData+=String(pres);
    logStringData+="hPa,   ";
 
-   Serial.print("Approx. Altitude: ");                    // Печать текста
+   Serial.print("Approx. Altitude: ");                   // Печать текста
    Serial.print(alt);                                    // Вычисление высоты
    Serial.println("m");                                  // Печать текста
    Serial.println();
@@ -147,7 +146,7 @@ const int PIN_CHIP_SELECT = 53;
    logStringData+=String(alt);
    logStringData+="m,   ";
 
-   Serial.print("Humidity: ");                            // Печать текста
+   Serial.print("Humidity: ");                           // Печать текста
    Serial.print(hum);                                    // Печать влажности
    Serial.println("%");                                  // Печать текста
 
@@ -199,8 +198,8 @@ const int PIN_CHIP_SELECT = 53;
   duration = pulseIn(pin, LOW);
   lowpulseoccupancy += duration;
   endtime = millis();
-    float ratio = (lowpulseoccupancy-endtime+starttime + sampletime_ms)/(sampletime_ms*10.0);  // Integer percentage 0=>100
-    float concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // using spec sheet curve
+    float ratio = (lowpulseoccupancy-endtime+starttime + sampletime_ms)/(sampletime_ms*10.0);  
+    float concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; 
     Serial.print("Lowpulseoccupancy: ");
     Serial.println(lowpulseoccupancy);
     Serial.println();
@@ -240,13 +239,13 @@ const int PIN_CHIP_SELECT = 53;
     dataFile.println(logStringData);
     dataFile.println();
     dataFile.close();
-    // Публикуем в мониторе порта для отладки
+
     Serial.println(logStringData);
     logStringData = "";
     delay(5000);
   }
   else {
-  // Сообщаем об ошибке, если все плохо
+
     Serial.println("error opening datalog.csv");
   }
 
