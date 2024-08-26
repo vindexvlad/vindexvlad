@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @vindexvlad
-- 👀 I’m interested in Python and Java
+- 👀 I’m interested in Python
 - 🌱 I’m currently learning Python_3
 - 💞️ I’m looking to collaborate on ...
 
